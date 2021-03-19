@@ -4,7 +4,7 @@ import RightChevron from "../../../assets/icons/RightChevron";
 import Subtask from "./Subtask";
 
 function Task(props) {
-  const { name, checked, subtasks, index } = props;
+  const { id, name, checked, subtasks, index } = props;
 
   const [isChecked, setIsChecked] = useState(checked);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -13,7 +13,7 @@ function Task(props) {
   const handleIconClick = () => setIsExpanded(!isExpanded);
 
   return (
-    <Draggable key={props.name} draggableId={props.name} index={props.index}>
+    <Draggable key={props.id} draggableId={props.id} index={props.index}>
       {provided => (
         <div className={"task-container" + (isExpanded ? "--expanded" : "")}
           {...provided.draggableProps}
@@ -32,7 +32,7 @@ function Task(props) {
             <RightChevron handleOnClick={handleIconClick} isRotated={isExpanded} />
           </div>
     
-          {/* <div
+          <div
             className={"task-details-container" + (isExpanded ? "--expanded" : "")}
           >
             <div className="subtask-list-container">
@@ -40,7 +40,7 @@ function Task(props) {
                 <Subtask key={subtask.id} name={subtask.name} checked={subtask.checked} />
               ))}
             </div>
-          </div> */}
+          </div>
         </div>
       )}
     </Draggable>

@@ -5,7 +5,7 @@ import Task from '../Task/Task';
 function TaskBoardColumn(props) {
     return(
         <div className="task-board-column">
-            <h2>{props.column.title}</h2>
+            <label className="task-board-header-label">{props.column.title}</label>
             <Droppable droppableId={props.column.title}>
                 {provided => (
                     <div
@@ -13,7 +13,7 @@ function TaskBoardColumn(props) {
                         ref={provided.innerRef}
                         {...provided.droppableProps}
                     >
-                        {props.tasks.map((task, index) => <Task name={task.id} index={index}/>)}
+                        {props.tasks.map((task, index) => <Task id={task.id} name={task.content} index={index}/>)}
                         {provided.placeholder}
                     </div>
                 )}

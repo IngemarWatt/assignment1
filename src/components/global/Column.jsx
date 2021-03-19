@@ -8,6 +8,7 @@ function Column(props) {
   const { heading } = props;
 
   return (
+    // This is where the droppable region should be 
       <div className="container">
 
         <h1 className="heading"> {heading} </h1>

@@ -12,6 +12,7 @@ function Task(props) {
 	const handleIconClick = () => setIsExpanded(!isExpanded);
 
 	return (
+		// This is where the draggable should be
 		<div className={`task${isExpanded ? '--expanded' : ''}`}>
 			<div className='task__header'>
 				<div

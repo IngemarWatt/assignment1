@@ -5,6 +5,7 @@ import HomeView from "./pages/homeView";
 import PageNotFoundView from "./pages/pageNotFoundView";
 import Navbar from "./components/Navbar";
 import BoardView from "./pages/boardView";
+import TaskBoardSampleData from "./components/global/TaskBoardSampleData"
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
             {/* Board view - navbar present */}
             <Route exact path="/board">
               <Navbar />
-              <BoardView />
+              <BoardView taskBoardData={TaskBoardSampleData}/>
             </Route>
             
             {/* Fallback - if none of the above routes are hit */}

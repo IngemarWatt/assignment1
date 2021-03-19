@@ -20,12 +20,8 @@ function BoardView(props) {
           const column = boardData.columns[columnId];
           const tasks = column.taskIds.map(taskId => boardData.tasks[taskId]);
 
-          return <Column heading={column.id}/>
+          return <Column key={column.id} column={column} tasks={tasks}/>
         })}
-
-        {/* <Column heading = "Backlog:"/>
-        <Column heading = "In Progress:"/>
-        <Column heading = "Todays Tasks:"/> */}
       </div>
     </DragDropContext>
   );

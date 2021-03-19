@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Draggable } from 'react-beautiful-dnd'
 import RightChevron from '../../../assets/icons/RightChevron';
 import Subtask from './Subtask';
 
 function Task(props) {
-	const { name, checked, expanded, subtasks } = props;
+	const { id, name, index, checked, expanded, subtasks } = props;
 
 	const [isChecked, setIsChecked] = useState(checked);
 	const [isExpanded, setIsExpanded] = useState(expanded);
@@ -13,39 +14,48 @@ function Task(props) {
 
 	return (
 		// This is where the draggable should be
-		<div className={`task${isExpanded ? '--expanded' : ''}`}>
-			<div className='task__header'>
-				<div
-					className={`task__checkbox${isChecked ? '--checked' : ''}`}
-					onClick={handleCheckBoxClick}
-					onKeyDown={handleCheckBoxClick}
-					role='checkbox'
-					aria-label='checkbox'
-					tabIndex='0'
-					aria-checked={isChecked}
-				/>
-				<span className={`task__title${isChecked ? '--checked' : ''}`}>
-					{name}
-				</span>
-				<RightChevron
-					handleOnClick={handleIconClick}
-					isRotated={isExpanded}
-				/>
-			</div>
+		<Draggable key = {id} draggableId={id} index={index}>
+			{provided => (
+				<div className={`task${isExpanded ? '--expanded' : ''}`}
+					{...provided.draggableProps}
+					{...provided.dragHandleProps}
+					innerRef={provided.innerRef}
+					ref={provided.innerRef}
+				>
+					<div className='task__header'>
+						<div
+							className={`task__checkbox${isChecked ? '--checked' : ''}`}
+							onClick={handleCheckBoxClick}
+							onKeyDown={handleCheckBoxClick}
+							role='checkbox'
+							aria-label='checkbox'
+							tabIndex='0'
+							aria-checked={isChecked}
+						/>
+						<span className={`task__title${isChecked ? '--checked' : ''}`}>
+							{name}
+						</span>
+						<RightChevron
+							handleOnClick={handleIconClick}
+							isRotated={isExpanded}
+						/>
+					</div>
 
-			<div className={`task__content${isExpanded ? '--expanded' : ''}`}>
-				<div className='task__subtask-list'>
-					{subtasks &&
-						subtasks.map((subtask) => (
-							<Subtask
-								key={subtask.id}
-								name={subtask.name}
-								checked={subtask.checked}
-							/>
-						))}
+					<div className={`task__content${isExpanded ? '--expanded' : ''}`}>
+						<div className='task__subtask-list'>
+							{subtasks &&
+								subtasks.map((subtask) => (
+									<Subtask
+										key={subtask.id}
+										name={subtask.name}
+										checked={subtask.checked}
+									/>
+								))}
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
+			)}
+		</Draggable>
 	);
 }
 export default Task;

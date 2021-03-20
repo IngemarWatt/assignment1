@@ -3,6 +3,7 @@ import React from "react";
 function BoardImage() {
   return (
     <svg
+      className="board-image"
       id="b6f9fa20-f559-433f-8a1e-35a1783b27e2"
       data-name="Layer 1"
       width="655.27173"

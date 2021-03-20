@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { DragDropContext } from 'react-beautiful-dnd'
 import Column from "../components/global/Column";
+import BoardImage from "../assets/images/BoardImage";
 import "../stylesheets/boardView.scss"
 
 function BoardView(props) {
@@ -36,16 +37,9 @@ function BoardView(props) {
             taskIds: newTaskIds,
         };
     
-        console.log(start)
-        console.log(newColumn)
-
         const newBoardData = boardData
-
         newBoardData.columns[source.droppableId] = newColumn;
-    
         setBoardData({...newBoardData})
-        console.log("Board data set")
-        console.log(newBoardData)
 
         return;
     }
@@ -61,6 +55,7 @@ function BoardView(props) {
     const finishTaskIds = Array.from(finish.taskIds);
     finishTaskIds.splice(destination.index, 0, draggableId);
 
+    // Update the column with the new task ids
     const newFinish = {
         ...finish,
         taskIds: finishTaskIds,
@@ -70,23 +65,25 @@ function BoardView(props) {
 
     newBoardData.columns[source.droppableId] = newStart;
     newBoardData.columns[destination.droppableId] = newFinish;
-    console.log(newBoardData)
     setBoardData({...newBoardData})
  }
 
   return (
 
-    // Make this div the DragDropContext. Place the onDragEnd function in this file
-    <DragDropContext onDragEnd={onDragEnd}>
+    <div className="board-view-wrapper">
+      <DragDropContext onDragEnd={onDragEnd}>
       <div className="row"> 
         {boardData.columnOrder.map((columnId) => {
           const column = boardData.columns[columnId];
           const tasks = column.taskIds.map(taskId => boardData.tasks[taskId]);
+          const subTasks = boardData.subTasks;
 
-          return <Column key={column.id} column={column} tasks={tasks}/>
+          return <Column key={column.id} column={column} tasks={tasks} subTasks={subTasks}/>
         })}
       </div>
-    </DragDropContext>
+      </DragDropContext>
+      <BoardImage/>
+    </div>
   );
 }
 

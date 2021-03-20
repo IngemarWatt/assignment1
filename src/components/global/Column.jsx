@@ -7,7 +7,7 @@ import Task from "./Task/Task"
 
 function Column(props) {
 
-  const { column, tasks } = props;
+  const { column, tasks, subTasks } = props;
 
   return (
     // This is where the droppable region should be 
@@ -23,8 +23,16 @@ function Column(props) {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {/* Pass the id, content(name), index, expanded state, checked state, and the json model to the task ui component */}
-              {tasks.map((task, index) => <Task id={task.id} name={task.content} index={index} expanded={task.expanded} checked={task.checked} boardTask={task}/>)}
+              {tasks.map((task, index) => {
+                var subTaskList = [];
+               
+                // Get all the subtasks for this task
+                for (var pos = 0; pos < task.subTasks.length; pos++) { 
+                  subTaskList.push(subTasks[task.subTasks[pos]])
+                } 
+
+                return <Task id={task.id} name={task.content} index={index} expanded={task.expanded} checked={task.checked} boardTask={task} subtasks={subTaskList}/>
+              })}
               {provided.placeholder}
             </div>
           )}

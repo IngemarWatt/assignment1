@@ -23,7 +23,8 @@ function Column(props) {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {tasks.map((task, index) => <Task id={task.id} name={task.content} index={index}/>)}
+              {/* Pass the id, content(name), index, expanded state, checked state, and the json model to the task ui component */}
+              {tasks.map((task, index) => <Task id={task.id} name={task.content} index={index} expanded={task.expanded} checked={task.checked} boardTask={task}/>)}
               {provided.placeholder}
             </div>
           )}

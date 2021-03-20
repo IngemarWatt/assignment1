@@ -70,6 +70,7 @@ function BoardView(props) {
 
     newBoardData.columns[source.droppableId] = newStart;
     newBoardData.columns[destination.droppableId] = newFinish;
+    console.log(newBoardData)
     setBoardData({...newBoardData})
  }
 

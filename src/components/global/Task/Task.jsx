@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd'
 import RightChevron from '../../../assets/icons/RightChevron';
+import TaskBoardSampleData from '../TaskBoardSampleData'
 import Subtask from './Subtask';
 
 function Task(props) {
@@ -9,7 +10,13 @@ function Task(props) {
 	const [isChecked, setIsChecked] = useState(checked);
 	const [isExpanded, setIsExpanded] = useState(expanded);
 
-	const handleCheckBoxClick = () => setIsChecked(!isChecked);
+	const handleCheckBoxClick = () => {
+		if(boardTask){
+			// if we're on the trello board, update the file that contains the task data
+			TaskBoardSampleData.tasks[boardTask.id].checked = !isChecked
+		}
+		setIsChecked(!isChecked)
+	}
 	const handleIconClick = () => setIsExpanded(!isExpanded);
 
 	return (

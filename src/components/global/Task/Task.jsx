@@ -4,7 +4,7 @@ import RightChevron from '../../../assets/icons/RightChevron';
 import Subtask from './Subtask';
 
 function Task(props) {
-	const { id, name, index, checked, expanded, subtasks } = props;
+	const { id, name, index, checked, expanded, subtasks, boardTask } = props;
 
 	const [isChecked, setIsChecked] = useState(checked);
 	const [isExpanded, setIsExpanded] = useState(expanded);
@@ -13,7 +13,6 @@ function Task(props) {
 	const handleIconClick = () => setIsExpanded(!isExpanded);
 
 	return (
-		// This is where the draggable should be
 		<Draggable key = {id} draggableId={id} index={index}>
 			{provided => (
 				<div className={`task${isExpanded ? '--expanded' : ''}`}

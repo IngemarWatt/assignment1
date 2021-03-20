@@ -1,6 +1,7 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import "../../stylesheets/components/global/column.scss"
+import Subtask from "./Task/Subtask";
 import Task from "./Task/Task"
 
 
@@ -27,19 +28,6 @@ function Column(props) {
             </div>
           )}
         </Droppable>
-
-        
-        {/* <div className = "column">
-
-          <Task name = "Assignment 1"/>
-          <Task name = "Task 1"/>
-          <Task name = "Task 2"/>
-          <Task name = "Assignment 2"/>
-          <Task name = "Task 1" />
-          <Task name = "Task 2"/>
-          <Task name = "Task 3"/>
-          
-        </div> */}
       </div>
 
   );

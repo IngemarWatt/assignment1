@@ -22,13 +22,13 @@ module.exports = {
     'jest'
   ],
   rules: {
-    // "react/prop-types": "off",
-    // "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    // "jest/no-disabled-tests": "warn",
-    // "jest/no-focused-tests": "error",
-    // "jest/no-identical-title": "error",
-    // "jest/prefer-to-have-length": "warn",
-    // "jest/valid-expect": "error"
+    "react/prop-types": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
   },
 
 };
